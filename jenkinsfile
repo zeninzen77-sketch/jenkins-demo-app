@@ -2,10 +2,11 @@ pipeline {
     agent any
 
     environment {
-        APP_NAME = "ZeninApp"
+        APP_NAME = "zenin-demo-app"
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git 'https://github.com/zeninzen77-sketch/jenkins-demo-app.git'
@@ -19,10 +20,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
+        stage('Docker Build') {
             steps {
-                echo "Testing ${APP_NAME}"
+                sh 'docker build -t zenin-demo-app .'
             }
         }
+
     }
 }
